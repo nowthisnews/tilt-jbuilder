@@ -10,10 +10,9 @@ module Tilt
 
     def partial!(template_name, locals = {})
       locals.merge! :json => self
-      template_path = locals.extract!(:template_path)[:template_path]
-      view_path = @scope.instance_variable_get('@_jbuilder_view_path') || template_path
+      view_path = @scope.instance_variable_get('@_jbuilder_view_path') || ::Sinatra::Application.views
       file = fetch_partial_path(template_name.to_s, view_path)
-      template = ::Tilt::JbuilderTemplate.new(file, nil, view_path: view_path)
+      template = ::Tilt::JbuilderTemplate.new(file, nil, nil)
       template.render(@scope, locals)
     end
 

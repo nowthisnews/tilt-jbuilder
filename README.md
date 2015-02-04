@@ -1,14 +1,6 @@
 # Modified by CG!
 
-To render partials, use this syntax:
-
-```
-json.partial! 'folder/file', template_path: Sinatra::Application.views
-```
-
-Instead of `Sinatra::Application.views`, you can give it anything that resolves to the `views` folder in your app.
-
-Your partial MUST be in the format `_file.jbuilder`.
+This expects `Sinatra::Application.views` will return a string of your base views path. Your partial MUST be in the format `_file.jbuilder`.
 
 # tilt-jbuilder
 
