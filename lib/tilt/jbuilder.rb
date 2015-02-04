@@ -8,10 +8,12 @@ module Tilt
       super(*args, &block)
     end
 
-    def partial!(options, locals = {})
+    def partial!(template_name, locals = {})
       locals.merge! :json => self
-      view_path = @scope.instance_variable_get('@_jbuilder_view_path')
-      template = ::Tilt::JbuilderTemplate.new(fetch_partial_path(options.to_s, view_path), nil, view_path: view_path)
+      template_path = locals.extract!(:template_path)[:template_path]
+      view_path = @scope.instance_variable_get('@_jbuilder_view_path') || template_path
+      file = fetch_partial_path(template_name.to_s, view_path)
+      template = ::Tilt::JbuilderTemplate.new(file, nil, view_path: view_path)
       template.render(@scope, locals)
     end
 

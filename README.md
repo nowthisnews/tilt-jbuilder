@@ -1,3 +1,13 @@
+# Modified by CG!
+
+To render partials, use this syntax:
+
+```
+json.partial! 'folder/file', template_path: Sinatra::Application.views
+```
+
+Your partial MUST be in the format `_file.jbuilder`.
+
 # tilt-jbuilder
 
 Adds support for rendering Jbuilder templates using Tilt.
